@@ -3,7 +3,8 @@ package application;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entities.Triangulo;
+import entities.Product;
+
 
 public class Main {
 
@@ -12,26 +13,31 @@ public class Main {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		Triangulo x, y;
-		x = new Triangulo();
-		y = new Triangulo();
+		System.out.println("Enter product data:");
+		System.out.print("Name:");
+		String name = sc.nextLine();
+		System.out.print("Price: ");
+		double price = sc.nextDouble();
+		System.out.print("Quantity: ");
+		int quantity = sc.nextInt();
 		
-		System.out.println("Enter the measure of triangle X: ");
-		x.a = sc.nextDouble();
-		x.b = sc.nextDouble();
-		x.c = sc.nextDouble();
-		System.out.println("Enter the measure of triangle Y: ");
-		y.a = sc.nextDouble();
-		y.b = sc.nextDouble();
-		y.c = sc.nextDouble();
+		// Instanciando um objeto do tipo da classe criada
+		Product product = new Product(name, price, quantity);
 		
-		System.out.printf("Triangle X area: %.4f%n", x.area());
-		System.out.printf("Triangle Y area: %.4f%n", y.area());
-		if(x.area() > y.area()) {
-			System.out.println("Larger area: X");
-		} else {
-			System.out.println("Larger area: Y");
-		}
+		// Chamando o toString da classe
+		System.out.println(product);
+		
+		System.out.print("Enter the number of products to be added in stock: ");
+		int updatedData = sc.nextInt();
+		// Método de adicionar no estoque
+		product.addQuantity(updatedData);		
+		System.out.println(product);
+		
+		System.out.print("Enter the number of products to be removed from stock: ");
+		updatedData = sc.nextInt();
+		// Método de remover do estoque
+		product.removeQuantity(updatedData);		
+		System.out.println(product);
 		
 		sc.close();
 		
