@@ -5,6 +5,7 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
@@ -14,15 +15,22 @@ public class Main {
         System.out.println("=== TEST 1: seller findById ===");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
+
         System.out.println("=== TEST 2: seller findByDepartment ===");
         List<Seller> list = sellerDao.findByDepartment(new Department(2, null));
         for(Seller obj : list) {
             System.out.println(obj);
         }
-        System.out.println("=== TEST 2: seller findByAll ===");
+
+        System.out.println("=== TEST 3: seller findByAll ===");
         list = sellerDao.findAll();
         for(Seller obj : list) {
             System.out.println(obj);
         }
+
+        System.out.println("=== TEST 4: seller inster ===");
+        Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDate.now(), 4000.0, new Department(2, null));
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New id = " + newSeller.getId());
     }
 }
